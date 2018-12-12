@@ -1,7 +1,6 @@
 require('dotenv').config();
 
 const MongoClient = require('mongodb').MongoClient;
-const path = require('path');
 const MongoDBProvider = require('commando-provider-mongo');
 const { MessageEmbed } = require('discord.js');
 var fs = require('fs');
@@ -37,6 +36,8 @@ client.on('ready', () => {
   console.log('Servers : ' + client.guilds.size);
   console.log('Users   : ' + client.users.size);
   console.log('-------------------------------------');
+	const dbl = new DBL(process.env.DBOTS, client);
+  client.setDBL(dbl);
 });
 
 client.on('disconnect', event => {
