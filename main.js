@@ -2,6 +2,7 @@ require('dotenv').config();
 
 const MongoClient = require('mongodb').MongoClient;
 const MongoDBProvider = require('commando-provider-mongo');
+const path = require('path');
 const { MessageEmbed } = require('discord.js');
 var fs = require('fs');
 const sqlite = require('sqlite');
