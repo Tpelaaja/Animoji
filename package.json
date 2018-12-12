@@ -1,0 +1,24 @@
+{
+  "name": "emojify",
+  "version": "1.0.0",
+  "description": "Power up your server with some amazing emojis",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "dotenv": "*",
+    "discord.js": "github:discordjs/discord.js",
+    "discord.js-commando": "github:discordjs/Commando",
+    "sqlite": "*",
+    "request": "^2.87.0",
+    "didyoumean": "^1.2.1",
+    "mongodb": "*",
+    "commando-provider-mongo": "*",
+    "google-images": "*",
+    "dblapi.js": "*"
+  },
+  "engines": {
+    "node": "8.x"
+  }
+}
