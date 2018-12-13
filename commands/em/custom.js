@@ -24,7 +24,7 @@ module.exports = class AddCommand extends Command {
 	}
 	async run(message) {
     let channel = message.channel
-    let loading = "<a:448530477117079552:loading>"
+    let loading = "<a:loading:448530477117079552>";
     let g = message.guild
     if (!g) g = {commandPrefix: '-'}
 
