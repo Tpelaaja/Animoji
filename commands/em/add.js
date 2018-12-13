@@ -18,7 +18,6 @@ module.exports = class AddCommand extends Command {
 			group: 'em',
 			memberName: 'add',
 			description: 'Add an emoji to your server by id.',
-			guarded: true,
       guildOnly: true,
       args: [
 				{
@@ -37,7 +36,7 @@ module.exports = class AddCommand extends Command {
     if (!g) g = {commandPrefix: '-'}
 
     if (!message.member.hasPermission('MANAGE_EMOJIS')) return channel.send(`You don't have enough permissions to add emojis. You need \`Manage Emojis\`.`)
-    let load = await message.react(loading)
+    let load = await message.react(client.shard.broadcastEval('this.emojis.get("448530477117079552")'))
     let checker = false;
     request({url: "https://discordemoji.com/api", json: true}, function (error, response, body) {
       checker = body.find(em => em.id === id);
