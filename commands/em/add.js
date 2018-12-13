@@ -32,10 +32,10 @@ module.exports = class AddCommand extends Command {
 
 	async run(message, { id }) {
     let channel = message.channel
-    let loading = message.client.guilds.find(val => val.id === '326237705828564993').emojis.find(val => val.name === 'loading');
+    let loading = "<a:448530477117079552:loading>"
     let g = message.guild
     if (!g) g = {commandPrefix: '-'}
-    
+
     if (!message.member.hasPermission('MANAGE_EMOJIS')) return channel.send(`You don't have enough permissions to add emojis. You need \`Manage Emojis\`.`)
     message.react(loading).then(load => {
       let checker = false;
@@ -85,4 +85,3 @@ module.exports = class AddCommand extends Command {
     })
   }
 };
-
