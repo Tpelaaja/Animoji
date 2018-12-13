@@ -24,12 +24,12 @@ module.exports = class AddCommand extends Command {
 	}
 	async run(message) {
     let channel = message.channel
-    let loading = message.client.guilds.find(val => val.id === '326237705828564993').emojis.find(val => val.name === 'loading');
+    let loading = "<a:448530477117079552:loading>"
     let g = message.guild
     if (!g) g = {commandPrefix: '-'}
-    
+
     if (!message.member.hasPermission('MANAGE_EMOJIS')) return channel.send(`You don't have enough permissions to add emojis. You need \`Manage Emojis\`.`)
-    
+
     if (message.attachments.size >= 2 || message.attachments.size < 1) return message.channel.send(`Attach only **one** image.`)
     if (!message.attachments.first().width) return message.channel.send(`Attach an **image** only.`)
     let image = message.attachments.first().attachment;
@@ -39,7 +39,7 @@ module.exports = class AddCommand extends Command {
       let a = c.first().content
       if (a === "cancel") return channel.send('Cancelled.')
       let name = a
-      
+
       message.guild.emojis.create(image, name).then(em => {
         message.channel.send(`Emoji added: ${em} `)
       }).catch(c => {message.channel.send('Error (2): ' + c.message)})
@@ -47,4 +47,3 @@ module.exports = class AddCommand extends Command {
     }).catch(err => {})
   }
 };
-
