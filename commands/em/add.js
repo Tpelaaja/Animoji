@@ -36,11 +36,11 @@ module.exports = class AddCommand extends Command {
     if (!g) g = {commandPrefix: '-'}
 
     if (!message.member.hasPermission('MANAGE_EMOJIS')) return channel.send(`You don't have enough permissions to add emojis. You need \`Manage Emojis\`.`)
-    let load = await message.react(message.client.shard.broadcastEval('this.emojis.get("448530477117079552")'))
+
     let checker = false;
     request({url: "https://discordemoji.com/api", json: true}, function (error, response, body) {
       checker = body.find(em => em.id === id);
-      load.users.remove(message.client.user);
+      
       if (checker === false) return channel.send("Unknown emoji ID. Use `" + g.commandPrefix + "search [emoji name]` to find out the id of your emoji.")
       else {
         let e = new MessageEmbed()
