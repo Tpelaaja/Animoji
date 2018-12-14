@@ -17,8 +17,8 @@ module.exports = class RandomCommand extends Command {
 	}
 
 	async run(message) {
-    let response = await this.voted(message);
-    if (!response) return;
+    //let response = await this.voted(message);
+    //if (!response) return;
     
     let x = await this.react(message);
     
