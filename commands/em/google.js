@@ -30,8 +30,8 @@ module.exports = class GoogleCommand extends Command {
     if (!message.guild.me.hasPermission('MANAGE_EMOJIS'))
       return message.channel.send(`I don't have enough permission to manage the emojis in this server. Make sure i have \`Manag Emojis\` permisions an try again.`)
     
-    let response = await this.voted(message);
-    if (!response) return;
+    //let response = await this.voted(message);
+    //if (!response) return;
     
     client.search(term, {safe: "high", size: "small"}).then(async images => {
       if (images.length == 0) return message.channel.send("No images found for query.");
