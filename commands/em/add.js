@@ -39,8 +39,8 @@ module.exports = class AddCommand extends Command {
 
     let checker = false;
     request({url: "https://discordemoji.com/api", json: true}, function (error, response, body) {
-      checker = body.find(em => em.id === id);
-      
+      checker = body.find(em => em.id === parseInt(id));
+
       if (checker === false) return channel.send("Unknown emoji ID. Use `" + g.commandPrefix + "search [emoji name]` to find out the id of your emoji.")
       else {
         let e = new MessageEmbed()
