@@ -1,2 +1,1 @@
-# Emojify
-Source code for bot
+# Emojify-Rewrite

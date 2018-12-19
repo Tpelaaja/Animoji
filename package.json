@@ -1,6 +1,6 @@
 {
   "name": "emojify",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "Power up your server with some amazing emojis",
   "main": "server.js",
   "scripts": {
@@ -10,13 +10,14 @@
     "dotenv": "*",
     "discord.js": "github:discordjs/discord.js",
     "discord.js-commando": "github:discordjs/Commando",
-    "sqlite": "*",
-    "request": "^2.87.0",
-    "didyoumean": "^1.2.1",
+    "klasa":"github:dirigeants/klasa",
     "mongodb": "*",
-    "commando-provider-mongo": "*",
+    "node-fetch": "*",
+    "didyoumean": "*",
     "google-images": "*",
-    "dblapi.js": "*"
+    "dblapi.js": "*",
+    "emojilib":"*",
+    "images-scraper": "*"
   },
   "engines": {
     "node": "8.x"

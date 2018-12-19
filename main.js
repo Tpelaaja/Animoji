@@ -1,62 +1,24 @@
-require('dotenv').config();
-
-const MongoClient = require('mongodb').MongoClient;
-const MongoDBProvider = require('commando-provider-mongo');
-const path = require('path');
-const { MessageEmbed } = require('discord.js');
-var fs = require('fs');
-const sqlite = require('sqlite');
-let TOKEN = process.env.TOKEN;
-
-const { CommandoClient, SQLiteProvider } = require('discord.js-commando');
-const Client = require('./client.js');
+const { Client } = require('klasa');
 const DBL = require("dblapi.js");
+const dbl = process.env.dbl;
 
-const client = new Client({
-	commandPrefix: "-",
-	owner: ["297403616468140032"],
-	unknownCommandResponse: false
+class client extends Client {
+  setDBL(dbl) {this.dbl = dbl;}
+};
+
+const bot = new client({
+  commandEditing: true,
+  prefix: "-",
+  providers: { default: "mongodb" }
 });
 
-client.registry
-	.registerDefaultTypes()
-	.registerTypesIn(path.join(__dirname, 'types'))
-	.registerGroups([
-		['util', 'Utility'],
-		['em', 'Emoji'],
-    ['commands', 'Command Manager']
-	])
-	.registerDefaultCommands({help: false,ping: false})
-	.registerCommandsIn(path.join(__dirname, 'commands'));
-
-client.on('ready', () => {
-  client.user.setActivity("for -help", { type: "WATCHING" });
-  console.log('--------------------------------------');
-  console.log('Name    : ' + client.user.username + '#' + client.user.discriminator);
-  console.log('ID      : ' + client.user.id);
-  console.log('Servers : ' + client.guilds.size);
-  console.log('Users   : ' + client.users.size);
-  console.log('-------------------------------------');
-	const dbl = new DBL(process.env.DBOTS, client);
-  client.setDBL(dbl);
+bot.on('ready', () => {
+  bot.user.setActivity("for -help", { type: "WATCHING" });
+  bot.setDBL(new DBL(dbl, bot));
 });
 
-client.on('disconnect', event => {
-	console.error(`[DISCONNECT] Disconnected with code ${event.code}.\n[REASON]: ${event.reason}`);
-	process.exit(0);
-});
+bot.on('commandRun', (message, command, args) =>
+  console.log(`[COMMAND] ${command.name} in ${message.guild.name}`)
+);
 
-client.on('commandRun', (command, p, m) => console.log(`[COMMAND] Ran command ${command.groupID}:${command.memberName}. (${m.guild})`));
-
-client.on('error', err => console.error('[ERROR]', err));
-
-client.on('warn', err => console.warn('[WARNING]', err));
-
-client.on('commandError', (command, err) => console.error('[COMMAND ERROR]', command.name, err));
-
-client.login(TOKEN);
-
-process.on('unhandledRejection', err => {
-	console.error('[FATAL] Unhandled Promise Rejection.', err);
-	process.exit(1);
-});
+bot.login();
