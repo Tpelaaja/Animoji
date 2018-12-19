@@ -2,7 +2,6 @@ const { Command } = require('klasa');
 const { MessageEmbed } = require('discord.js');
 const fetch = require('node-fetch');
 const didyoumean = require('didyoumean');
-const fileType = require('file-type');
 
 module.exports = class extends Command {
     constructor(...args) {
