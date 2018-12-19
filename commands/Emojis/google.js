@@ -14,6 +14,7 @@ module.exports = class extends Command {
         });
     }
     async run(message, [ GoogleSearchQuery ]) {
+      let prefix = message.guild ? message.guild.settings.prefix : "-";
       if (!GoogleSearchQuery)
         return message.channel.send(`<a:crossanimated:441425622187769877> You didn't specify anything to search.`)
       client.search(GoogleSearchQuery, {safe: "high"}).then(async images => {
@@ -48,7 +49,7 @@ module.exports = class extends Command {
 
         let em = await message.guild.emojis.create(img.thumbnail.url, response)
         message.channel.send(`<a:checkanimated:520306348613828609> Added emoji: ${em}.`)
-      }).catch(e => {message.channel.send(`<a:crossanimated:441425622187769877> This command has been disabled for today.`)})
+      }).catch(e => {message.channel.send(`<a:crossanimated:441425622187769877> This command has been disabled for today.\nTry using \`${prefix}bing ${GoogleSearchQuery}\``)})
     }
 
 
