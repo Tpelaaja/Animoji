@@ -14,6 +14,10 @@ module.exports = class extends Command {
         });
     }
     async run(message, [ BingSearchQuery ]) {
+
+      let voted = await this.voted(message);
+      if (!voted) return;
+
       if (!BingSearchQuery)
         return message.channel.send(`<a:crossanimated:441425622187769877> You didn't specify anything to search.`)
 
@@ -49,5 +53,16 @@ module.exports = class extends Command {
 
       let em = await message.guild.emojis.create(img.thumb, response)
       message.channel.send(`<a:checkanimated:520306348613828609> Added emoji: ${em}.`)
+  }
+
+
+
+  async voted(message) {
+    let response = await message.client.dbl.hasVoted(message.author.id);
+    if (response) return true;
+    else {
+      message.channel.send(`🔒 This command is upvote locked. Upvote the bot today at <https://discordbots.org/bot/448527818855284756/vote> and try again in a few minutes.`);
+      return false;
+    }
   }
 };

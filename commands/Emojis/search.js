@@ -14,6 +14,9 @@ module.exports = class extends Command {
     async run(message, [ SearchValue ]) {
       let prefix = message.guild ? message.guild.settings.prefix : "-";
 
+      let voted = await this.voted(message);
+      if (!voted) return;
+
       // Initial setup
       if (!SearchValue) return message.channel.send(`<a:crossanimated:441425622187769877> Type something to search. \`${prefix}search pepe\`.`)
       let m = await message.channel.send(`<a:searching:517032052059537418> Searching for \`${SearchValue}\``);
@@ -53,6 +56,15 @@ module.exports = class extends Command {
 
         let em = await message.guild.emojis.create(res.image, response)
         message.channel.send(`<a:checkanimated:520306348613828609> Added emoji: ${em}.`)
+      }
+    }
+
+    async voted(message) {
+      let response = await message.client.dbl.hasVoted(message.author.id);
+      if (response) return true;
+      else {
+        message.channel.send(`🔒 This command is upvote locked. Upvote the bot today at <https://discordbots.org/bot/448527818855284756/vote> and try again in a few minutes.`);
+        return false;
       }
     }
 };

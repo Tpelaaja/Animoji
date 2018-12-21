@@ -53,12 +53,4 @@ module.exports = class extends Command {
     }
 
 
-    async voted(message) {
-        let response = await message.client.dbl.hasVoted(message.author.id);
-        if (response) return true;
-        else {
-          message.channel.send(`🔒 This command is upvote locked. Upvote the bot today at <https://discordbots.org/bot/448527818855284756/vote> and try again in a few minutes.`);
-          return false;
-        }
-      }
 };
