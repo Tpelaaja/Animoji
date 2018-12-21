@@ -13,19 +13,17 @@ module.exports = class extends Command {
       let guilds = await client.shard.broadcastEval('this.guilds.size');
       let users = await client.shard.broadcastEval('this.users.size');
       let channels = await client.shard.broadcastEval('this.channels.size');
-      let memory = await client.shard.broadcastEval('process.memoryUsage().heapUsed / 1024 / 1024')
       let duration = Duration.toNow(Date.now() - (process.uptime() * 1000));
 
       let e = new MessageEmbed()
       .setTitle(`Stats`)
       .setDescription(
         `
-**Guilds: **${guilds}
-**Users: **${users}
-**Channels: **${channels}
+**Guilds: **${guilds.reduce((a, b) => a + b, 0)}
+**Users: **${users.reduce((a, b) => a + b, 0)}
+**Channels: **${channels.reduce((a, b) => a + b, 0)}
         `
       )
-      .addField(`Memory`, `${Math.floor(memory)}MB`, true)
       .addField(`Uptime`, `${duration}`, true)
       .setTimestamp()
       .setColor(process.env.theme)
