@@ -14,8 +14,8 @@ module.exports = class extends Command {
     async run(message, [ SearchValue ]) {
       let prefix = message.guild ? message.guild.settings.prefix : "-";
 
-      let voted = await this.voted(message);
-      if (!voted) return;
+      //let voted = await this.voted(message);
+      //if (!voted) return;
 
       // Initial setup
       if (!SearchValue) return message.channel.send(`<a:crossanimated:441425622187769877> Type something to search. \`${prefix}search pepe\`.`)

@@ -15,8 +15,8 @@ module.exports = class extends Command {
     }
     async run(message, [ BingSearchQuery ]) {
 
-      let voted = await this.voted(message);
-      if (!voted) return;
+      //let voted = await this.voted(message);
+      //if (!voted) return;
 
       if (!BingSearchQuery)
         return message.channel.send(`<a:crossanimated:441425622187769877> You didn't specify anything to search.`)

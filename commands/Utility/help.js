@@ -63,7 +63,7 @@ module.exports = class extends Command {
       for (const [category, list] of commands) {
         display.addPage(new MessageEmbed()
           .setTitle(`${category} Commands`)
-          .setColor(0x94d1a5)
+          .setColor(process.env.theme)
           .setDescription(list.map(this.formatCommand.bind(this, message, prefix, true)).join('\n'))
         );
       }
