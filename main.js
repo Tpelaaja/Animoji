@@ -15,7 +15,7 @@ const bot = new client({
   providers: { default: "mongodb" }
 });
 
-bot.on('ready', () => {
+bot.on('ready', async () => {
   bot.user.setActivity("for -help", { type: "WATCHING" });
   bot.setDBL(new DBL(dbl, bot));
 
@@ -30,12 +30,12 @@ bot.on('commandRun', (message, command, args) =>
 );
 
 // BFD post count
-bot.on('guildCreate', () => {
+bot.on('guildCreate', async () => {
   let guilds = await client.shard.broadcastEval('this.guilds.size');
   bfd.postCount(guilds.reduce((a, b) => a + b, 0), "448527818855284756");
 })
 
-bot.on('guildDelete', () => {
+bot.on('guildDelete', async () => {
   let guilds = await client.shard.broadcastEval('this.guilds.size');
   bfd.postCount(guilds.reduce((a, b) => a + b, 0), "448527818855284756");
 })
