@@ -11,7 +11,8 @@ class client extends Client {
 const bot = new client({
   commandEditing: true,
   prefix: "-",
-  providers: { default: "mongodb" }
+  providers: { default: "mongodb" },
+  disabledCorePieces: ["commands"]
 });
 
 bot.on('ready', async () => {
