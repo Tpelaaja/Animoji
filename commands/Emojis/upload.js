@@ -22,7 +22,9 @@ module.exports = class extends Command {
       try {
         response = await message.channel.awaitMessages(filter, { max: 1});
         response = response.first().content;
-      } catch (e) {console.error(e)}
+      } catch (e) {
+        message.channel.send(`<a:crossanimated:441425622187769877> File too large`)
+      }
       if (response.toLowerCase() === "cancel") return message.channel.send(`<a:crossanimated:441425622187769877> Cancelled emoji upload.`);
 
       let newEmoji = await message.guild.emojis.create(image, response);
