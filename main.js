@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const { Client } = require('klasa');
 const DBL = require("dblapi.js");
 const dbl = process.env.dbl;
