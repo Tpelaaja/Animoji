@@ -14,7 +14,7 @@ const bot = new client({
   providers: { default: "mongodb" },
   disabledCorePieces: ["commands"]
 });
-/*
+
 bot.on('ready', async () => {
   bot.user.setActivity("for -help", { type: "WATCHING" });
   bot.setDBL(new DBL(dbl, bot));
@@ -33,5 +33,5 @@ bot.on('guildCreate', async () => {
 bot.on('guildDelete', async () => {
   bot.tasks.find(task => task.name === "post").run(bot)
 })
-*/
+
 bot.login();
