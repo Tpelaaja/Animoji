@@ -18,7 +18,8 @@
     "dblapi.js": "*",
     "emojilib":"*",
     "images-scraper": "*",
-    "bfd-api": "*"
+    "bfd-api": "*",
+    "dotenv": "*"
   },
   "engines": {
     "node": "8.x"
