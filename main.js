@@ -14,13 +14,12 @@ const bot = new client({
   providers: { default: "mongodb" },
   disabledCorePieces: ["commands"]
 });
-
+/*
 bot.on('ready', async () => {
   bot.user.setActivity("for -help", { type: "WATCHING" });
   bot.setDBL(new DBL(dbl, bot));
 });
 
-bot.login();
 
 bot.on('commandRun', (message, command, args) =>
   console.log(`[COMMAND] ${command.name} in ${message.guild.name}`)
@@ -34,3 +33,5 @@ bot.on('guildCreate', async () => {
 bot.on('guildDelete', async () => {
   bot.tasks.find(task => task.name === "post").run(bot)
 })
+*/
+bot.login();
