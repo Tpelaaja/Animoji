@@ -5,7 +5,9 @@ const fetch = require('node-fetch');
 module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
-            description: "Get a random emoji from the database"
+            description: "Get a random emoji from the database",
+            bucket: 5,
+            cooldown: 5
         });
     }
     async run(message) {

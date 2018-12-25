@@ -15,7 +15,9 @@ module.exports = class extends Command {
         super(...args, {
             aliases: ["info", "emojipedia", "emojidex"],
             description: "Lookup an ordinary emoji for information",
-            usage: "[Emoji:String]"
+            usage: "[Emoji:String]",
+            bucket: 5,
+            cooldown: 5
         });
     }
     async run(message, [Emoji]) {

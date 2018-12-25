@@ -10,7 +10,9 @@ module.exports = class extends Command {
             aliases: ['bing-search'],
             description: "Search for an emoji from google to add to the server.",
             usage: "[BingSearchQuery:string]",
-            runIn: ["text"]
+            runIn: ["text"],
+            bucket: 5,
+            cooldown: 5
         });
     }
     async run(message, [ BingSearchQuery ]) {

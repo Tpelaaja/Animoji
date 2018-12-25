@@ -8,7 +8,9 @@ module.exports = class extends Command {
         super(...args, {
             aliases: ["icons"],
             description: "Find an icon to add as an emoji.",
-            usage: "[SearchValue:string]"
+            usage: "[SearchValue:string]",
+            bucket: 5,
+            cooldown: 5
         });
     }
     async run(message, [ SearchValue ]) {
