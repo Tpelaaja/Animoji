@@ -4,9 +4,6 @@ const { Client } = require('klasa');
 const DBL = require("dblapi.js");
 const dbl = process.env.dbl;
 
-const BFD = require("bfd-api");
-const bfd = new BFD(process.env.bfd);
-
 class client extends Client {
   setDBL(dbl) {this.dbl = dbl;}
 };
@@ -20,9 +17,6 @@ const bot = new client({
 bot.on('ready', async () => {
   bot.user.setActivity("for -help", { type: "WATCHING" });
   bot.setDBL(new DBL(dbl, bot));
-
-  let guilds = await bot.shard.broadcastEval('this.guilds.size');
-  bfd.postCount(guilds.reduce((a, b) => a + b, 0), "448527818855284756");
 });
 
 bot.login();
@@ -33,11 +27,9 @@ bot.on('commandRun', (message, command, args) =>
 
 // BFD post count
 bot.on('guildCreate', async () => {
-  let guilds = await bot.shard.broadcastEval('this.guilds.size');
-  bfd.postCount(guilds.reduce((a, b) => a + b, 0), "448527818855284756");
+  bot.tasks.find(task => task.name === "post").run(bot)
 })
 
 bot.on('guildDelete', async () => {
-  let guilds = await bot.shard.broadcastEval('this.guilds.size');
-  bfd.postCount(guilds.reduce((a, b) => a + b, 0), "448527818855284756");
+  bot.tasks.find(task => task.name === "post").run(bot)
 })
