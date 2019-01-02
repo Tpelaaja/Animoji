@@ -67,6 +67,11 @@ module.exports = class extends Command {
           .setDescription(list.map(this.formatCommand.bind(this, message, prefix, true)).join('\n'))
         );
       }
+      display.addPage(new MessageEmbed()
+        .setColor(process.env.theme)
+        .setTitle(`Support`)
+        .setDescription(`If you need more help with any of these commands, join the help server: https://discord.gg/hN695FW\nInvite the bot to your server: [Invite](https://discordapp.com/oauth2/authorize?client_id=448527818855284756&permissions=1074023488&scope=bot)`)
+      )
       return display;
     }
     async buildHelp(message) {
