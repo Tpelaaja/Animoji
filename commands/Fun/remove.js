@@ -13,7 +13,7 @@ module.exports = class extends Command {
     }
     async run(message, [ Emoji ]) {
       if (!message.member.hasPermission('MANAGE_EMOJIS'))
-        return message.channel.send(`<a:crossanimated:441425622187769877> You don't have enough permissions to add emojis. You need \`Manage Emojis\`.`);
+        return message.channel.send(`<a:crossanimated:441425622187769877> You don't have enough permissions to remove emojis. You need \`Manage Emojis\`.`);
       if (!Emoji)
         return message.channel.send(`<a:crossanimated:441425622187769877> Specify an emoji to remove.`)
       let found = message.guild.emojis.find(e => e.name.toLowerCase() === Emoji.toLowerCase());
