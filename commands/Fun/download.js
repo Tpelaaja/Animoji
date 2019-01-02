@@ -9,7 +9,7 @@ module.exports = class extends Command {
             usage: "[Emoji:string]"
         });
     }
-    async run(message) {
+    async run(message, [Emoji]) {
       if (!Emoji)
         return message.channel.send(`<a:crossanimated:441425622187769877> Specify an emoji to download.`);
       let found = message.guild.emojis.find(e => e.name.toLowerCase() === Emoji.toLowerCase());
