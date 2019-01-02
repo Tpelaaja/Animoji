@@ -12,13 +12,16 @@ module.exports = class extends Command {
     async run(message, [Emoji]) {
       if (!Emoji)
         return message.channel.send(`<a:crossanimated:441425622187769877> Specify an emoji to download.`);
-      let found = message.guild.emojis.find(e => e.name.toLowerCase() === Emoji.toLowerCase());
-      if (!found || !found.url)
-        return message.channel.send(`<a:crossanimated:441425622187769877> There is no emoji in the server called \`${Emoji}\`.`);
-
+      let match = /<a?:[\w_]+:(\d{17,20})>/g;
+      let found = Emoji.match(match);
+      if (!found)
+        return message.channel.send(`<a:crossanimated:441425622187769877> Specify an emoji to download.`);
+      found = found[0];
+      let id = found.split(':')[2].replace('>', '').replace(' ', '')
+      let url = found.startsWith('<a') ? `https://cdn.discordapp.com/emojis/${id}.gif` : `https://cdn.discordapp.com/emojis/${id}.png`
       let e = new MessageEmbed()
       .setColor(process.env.theme)
-      .setImage(found.url)
+      .setImage(url)
       message.channel.send(e)
     }
 };
