@@ -35,6 +35,7 @@ module.exports = class extends Command {
         let e = new MessageEmbed()
         .setTitle(emoji)
         .setDescription(`To add this emoji, you need permissions to \`Manage Emojis\`.`)
+        .addField(`⃠`, `Support the bot by [upvoting](https://botsfordiscord.com/bots/448527818855284756/vote) it.`)
         .setThumbnail(res.image)
         .setColor(process.env.theme)
         .setFooter(`Submitted by ${res.submitted_by}`)
