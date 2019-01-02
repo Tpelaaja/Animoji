@@ -8,7 +8,7 @@ module.exports = class extends Command {
     constructor(...args) {
         super(...args, {
             aliases: ['google-search'],
-            description: "Search for an emoji from google to add to the server.",
+            description: "Search for an image from google",
             usage: "[GoogleSearchQuery:string]",
             runIn: ["text"]
         });
