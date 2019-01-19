@@ -74,7 +74,7 @@ module.exports = class extends Command {
         data = await data.json()
         if (data.hasVoted24.includes(message.author.id)) return true
         else {
-          message.channel.send(`🔒 This command is upvote locked. Upvote the bot today at <https://discordbots.org/bot/448527818855284756/vote> and try again in a few minutes.`);
+          message.channel.send(`🔒 This command is upvote locked. Upvote the bot today at <https://botsfordiscord.com/bots/448527818855284756/vote> and try again in a few minutes.`);
           return false;
         }
       }
