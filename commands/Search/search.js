@@ -14,8 +14,8 @@ module.exports = class extends Command {
     async run(message, [ SearchValue ]) {
       let prefix = message.guild ? message.guild.settings.prefix : "-";
 
-      //let voted = await this.voted(message);
-      //if (!voted) return;
+      let voted = await this.bfdvoted(message);
+      if (!voted) return;
 
       // Initial setup
       if (!SearchValue) return message.channel.send(`<a:crossanimated:441425622187769877> Type something to search. \`${prefix}search pepe\`.`)
@@ -60,7 +60,7 @@ module.exports = class extends Command {
       }
     }
 
-    async voted(message) {
+    async dblvoted(message) {
       let response = await message.client.dbl.hasVoted(message.author.id);
       if (response) return true;
       else {
@@ -68,4 +68,14 @@ module.exports = class extends Command {
         return false;
       }
     }
+
+      async bfdvoted(message) {
+        let data = await fetch(`https://botsfordiscord.com/api/bot/448527818855284756/votes`, {headers: {Authorization: "3e546f0ffbefb15e77b95b8485c2eb29cbe05c72cdc5e6f7f293f3a9b286963dd1a8d94a539deb16e79c3d3a140c7c8879ce7fd0802e15b6e1d7b1860af121c7"}})
+        data = await data.json()
+        if (data.hasVoted24.includes(message.author.id)) return true
+        else {
+          message.channel.send(`🔒 This command is upvote locked. Upvote the bot today at <https://discordbots.org/bot/448527818855284756/vote> and try again in a few minutes.`);
+          return false;
+        }
+      }
 };
