@@ -4,7 +4,6 @@ module.exports = class extends Language {
 
     constructor(...args) {
         super(...args, {
-            name: 'en_US',
             enabled: true
         });
 
