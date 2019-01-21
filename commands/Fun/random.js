@@ -46,8 +46,11 @@ module.exports = class extends Command {
       } catch (e) {return message.channel.send(`<a:crossanimated:441425622187769877> Timeout`)}
 
       if (response.toLowerCase() === "cancel") return message.channel.send(`<a:crossanimated:441425622187769877> Cancelled`)
-
-      let em = await message.guild.emojis.create(res.image, response)
-      message.channel.send(`<a:checkanimated:520306348613828609> Added emoji: ${em}.`)
+      try {
+        let em = await message.guild.emojis.create(res.image, response)
+        await message.channel.send(`<a:checkanimated:520306348613828609> Added emoji: ${em}.`)
+      } catch (e) {
+        message.channel.send(`<a:crossanimated:441425622187769877> Error: \`\`\`${e.message}\`\`\``);
+      }
     }
 };
