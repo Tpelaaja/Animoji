@@ -12,7 +12,7 @@ module.exports = class extends Command {
         });
     }
     async run(message, [ Emoji ]) {
-      Emoji = Emoji.split(':').join('')
+      if (Emoji.includes(':')) Emoji = Emoji.split(':')[1]
       if (!message.member.hasPermission('MANAGE_EMOJIS'))
         return message.channel.send(`<a:crossanimated:441425622187769877> You don't have enough permissions to remove emojis. You need \`Manage Emojis\`.`);
       if (!Emoji)
