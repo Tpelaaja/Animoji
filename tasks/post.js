@@ -11,6 +11,7 @@ module.exports = class extends Task {
     async run(client) {
       let guilds = await client.shard.broadcastEval('this.guilds.size');
       bfd.postCount(guilds.reduce((a, b) => a + b, 0), "448527818855284756");
+      client.dbl.postStats(client.guilds.size, client.shards.Id, client.shards.total);
       return true;
     }
 };
