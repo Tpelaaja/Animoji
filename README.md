@@ -1,4 +1,4 @@
-Emojify
+Animoji
 ============
 
 A discord emoji bot built in Klasa to sparkle up your server with some emoji fun (and add some emoji moderation).
